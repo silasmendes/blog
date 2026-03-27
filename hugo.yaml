@@ -1,0 +1,63 @@
+# Hugo configuration
+baseURL: https://example.com/
+title: Silas Mendes - Data Engineering notes
+languageCode: en-us
+theme: hextra
+
+# Configurações de build
+enableRobotsTXT: true
+enableGitInfo: true
+
+# Configurações de Markdown
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+# Menu de navegação principal
+menu:
+  main:
+    - identifier: blog
+      name: Blog
+      pageRef: /blog
+      weight: 1
+    - identifier: about
+      name: About me
+      pageRef: /about
+      weight: 2
+    - identifier: search
+      name: Search
+      weight: 3
+      params:
+        type: search
+
+# Parâmetros do tema Hextra
+params:
+  description: Field notes on data engineering
+
+  navbar:
+    displayTitle: true
+    displayLogo: false
+
+  footer:
+    displayCopyright: true
+    displayPoweredBy: true
+
+  editURL:
+    enable: false
+
+  blog:
+    list:
+      displayTags: true
+
+  comments:
+    enable: false
+
+  page:
+    width: normal
+
+  theme:
+    default: system
+    displayToggle: true
