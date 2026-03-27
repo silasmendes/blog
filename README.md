@@ -1,4 +1,4 @@
-# Silas Mendes — Data Engineering Notes
+# Silas Mendes - Data Engineering Notes
 
 My personal blog where I share field notes, lessons learned, and practical guides on data engineering, covering topics related to **Microsoft Fabric**, **Databricks**, **Synapse Analytics**, and modern data platforms in general.
 
@@ -8,8 +8,8 @@ I'm a Data Professional working as an Embedded Escalation Engineer. This blog is
 
 ## Built with
 
-- [Hugo](https://gohugo.io/) — A fast, open-source static site generator
-- [Hextra](https://github.com/imfing/hextra) — A modern Hugo theme built with Tailwind CSS
+- [Hugo](https://gohugo.io/) - A fast, open-source static site generator
+- [Hextra](https://github.com/imfing/hextra) - A modern Hugo theme built with Tailwind CSS
 
 ## License
 
