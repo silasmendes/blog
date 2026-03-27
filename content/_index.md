@@ -1,3 +1,3 @@
 ---
-title: Silas Mendes - Data Engineering Notes
+title: Silas Mendes - Data Engineering notes
 ---
