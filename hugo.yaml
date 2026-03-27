@@ -1,5 +1,5 @@
 # Hugo configuration
-baseURL: https://silasmendes.me/
+baseURL: https://www.silasmendes.me/
 title: Silas Mendes - Data Engineering notes
 languageCode: en-us
 theme: hextra
