@@ -1,47 +1,42 @@
-# Silas Blog (Hextra)
+# Silas Mendes — Data Engineering Notes
 
-Blog pessoal construído com [Hugo](https://gohugo.io/) e o tema [Hextra](https://github.com/imfing/hextra).
+My personal blog where I share field notes, lessons learned, and practical guides on data engineering — covering topics like **Microsoft Fabric**, **Databricks**, **Synapse Analytics**, and modern data platforms in general.
 
-## Pré-requisitos
+## About
+
+I'm a Data Professional working as an Embedded Escalation Engineer. This blog is a space for me to document things I learn along the way and hopefully help others facing similar challenges. The opinions and content here are entirely my own and do not represent my employer.
+
+## Built with
+
+- [Hugo](https://gohugo.io/) — A fast, open-source static site generator
+- [Hextra](https://github.com/imfing/hextra) — A modern Hugo theme built with Tailwind CSS
+
+## Running locally
+
+### Prerequisites
 
 - [Hugo Extended](https://gohugo.io/installation/) (v0.140.0+)
 - [Git](https://git-scm.com/)
 
-## Desenvolvimento local
+### Setup
 
 ```bash
-# Clonar o repositório (com submodules)
-git clone --recurse-submodules <url-do-repo>
+# Clone the repository with the theme submodule
+git clone --recurse-submodules https://github.com/silasmendes/blog.git
+cd blog
 
-# Iniciar servidor de desenvolvimento
+# Start the development server
 hugo server --buildDrafts
 ```
 
-O site estará disponível em `http://localhost:1313`.
+The site will be available at `http://localhost:1313`.
 
-## Criar novo post
-
-```bash
-hugo new content blog/meu-novo-post.md
-```
-
-## Build para produção
+### Creating a new post
 
 ```bash
-hugo --minify
+hugo new content blog/my-new-post/index.md
 ```
 
-O site será gerado na pasta `public/`.
+## License
 
-## Estrutura
-
-```
-├── content/
-│   ├── _index.md          # Página inicial
-│   ├── about.md           # Página Sobre
-│   └── blog/
-│       ├── _index.md      # Lista de posts
-│       └── *.md           # Posts do blog
-├── hugo.yaml              # Configuração do Hugo
-└── themes/hextra/         # Tema Hextra (submodule)
-```
+Blog content (under `content/`) is my own. The [Hextra](https://github.com/imfing/hextra) theme is licensed under the MIT License.
