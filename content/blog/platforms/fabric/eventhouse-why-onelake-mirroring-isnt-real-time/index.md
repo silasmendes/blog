@@ -9,7 +9,7 @@ This week, I collaborated in an interesting support case regarding Eventhouse on
 Example:
 ![Eventhouse Onelake Availability](eventhouse-onelake-availability.png)
 
-If you are encountering this same delay, I want to be entirely straightforward: **at the time of writing, this is the expected behavior.** It is easy to assume that because Eventhouse handles real-time ingestion so beautifully, its OneLake mirroring capabilities would do the same. However, the mechanics of how data is flushed to OneLake fundamentally shift the architectural goal from *real-time streaming* to *optimized batch querying*. Let’s break down exactly why this happens, the trade-offs involved, and how to choose the right querying strategy for your use case.
+If you are encountering this same delay, I want to be entirely straightforward: **at the time of writing, this is the expected behavior.** It is easy to assume that because Eventhouse handles real-time ingestion so beautifully, its OneLake mirroring capabilities would do the same. However, the mechanics of how data is flushed to OneLake fundamentally shift the architectural goal from *real-time streaming* to *optimized batch querying*. 
 
 ## The "Small File" problem and adaptive buffering
 
@@ -23,16 +23,15 @@ By default, Eventhouse waits until the data reaches an optimal file size, typica
 
 ## Can we make it faster? The latency trade-off
 
-You *can* force Eventhouse to flush data more frequently by altering the mirroring policy. The target latency can be reduced to as low as **5 minutes**. 
+You can force Eventhouse to flush data more frequently by altering the mirroring policy. At the time of writing, the minimum supported target latency is 5 minutes: 
 
 ```kusto
 .alter-merge table YourTableName policy mirroring dataformat=parquet 
 with (IsEnabled=true, TargetLatencyInMinutes=5);
 ```
+While 5 minutes is not what most people would consider near real-time, it is currently the lowest latency allowed by the platform.
 
-While this sounds like a quick fix, it comes with a massive caveat. Lowering the latency increases how frequently data is written, which almost guarantees the creation of many small Parquet files. 
-
-Normally in a Lakehouse, you would run an `OPTIMIZE` command to compact small files and `VACUUM` to clean up the old ones. However, , as of right now, **mirrored Eventhouse tables are read-only in OneLake**. Maintenance operations are not supported. If you lower the latency and fragment your Delta table, you cannot fix the resulting performance hit later. 
+Lowering the latency increases how frequently data is written, which may create many small Parquet files; and usually in a Lakehouse, you would run an `OPTIMIZE` command to compact small files and `VACUUM` to clean up the old ones. However, as of right now, **mirrored Eventhouse tables are read-only in OneLake**. Maintenance operations are not supported. 
 
 *(Note: `TargetLatencyInMinutes` is a target, not a strict SLA. Eventhouse will aim for this interval, but variations in actual latency are expected).*
 
